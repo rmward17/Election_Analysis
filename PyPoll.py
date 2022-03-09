@@ -16,6 +16,9 @@ total_votes = 0
 # candidate options
 candidate_options = []
 
+# candidate votes
+candidate_votes = {}
+
 # Open the election results and read the file
 with open(file_to_load) as election_data:
 
@@ -27,21 +30,39 @@ with open(file_to_load) as election_data:
      
      # print each row in the CSV file
      for row in file_reader:
-          # Add to the total vote vount
-         total_votes += 1
-          # Pull the candidate name from each row
-         candidate_name = row[2]
-         # If the candidate does not match any existing candidate...
-         if candidate_name not in candidate_options:
+       # Add to the total vote vount
+      total_votes += 1
+       # Pull the candidate name from each row
+      candidate_name = row[2]
+      # If the candidate does not match any existing candidate...
+      if candidate_name not in candidate_options:
            # Add it to the list of candidates
            candidate_options.append(candidate_name)
+           # dictionary_name[key] = value 
+           candidate_votes[candidate_name] = 0
+      #increment each candidate name
+      candidate_votes[candidate_name] += 1
 
-        
+# Determine percentage of votes for each candidate by looping thorugh the counts
+# Iterate through the candidate options list to get each name
+# for each key in the dictionary
+for candidate_name in candidate_votes:
+# use the for loop variable ot retrieve the votes of the candidate from the votes dictionary
+# assign a variable to the dictionary values
+  votes = candidate_votes[candidate_name]
+# Calculate the percentage of the vote count for each candidate
+  vote_percentage = float(votes) / float(total_votes) * 100
+# print the percentages for each of the candidates
+# print ( "key: recieved {calculated value}% of the vote.")
+  print(f"{candidate_name}: recieved {vote_percentage:.1f}% of the vote.")
 # Print the total votes
-print(total_votes)
+# print(total_votes)
 
 # Print the candidate list
-print(candidate_options)
+# print(candidate_options)
+
+# print the candiate votes dictionary
+# print(candidate_votes)
 
 # Create a filename variable to a direct or indirect path to the file.
 file_to_save = os.path.join("analysis", "election_analysis.txt")
