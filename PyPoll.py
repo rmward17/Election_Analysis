@@ -80,6 +80,8 @@ with open(file_to_save, "w") as txt_file:
         winning_percentage = vote_percentage
         # And, set the winning_candidate equal to the candidate's name.
         winning_candidate = candidate_name
+      candidate_results = (f"{candidate_name}: recieved {vote_percentage:.1f}% of the vote.\n")
+      txt_file.write(candidate_results)
 
     winning_candidate_summary = (
     f"-------------------------\n"
@@ -91,8 +93,7 @@ with open(file_to_save, "w") as txt_file:
     # print the percentages for each of the candidates
     # print ( "key: recieved {calculated value}% of the vote.")
     # save candidate results to txt file
-    candidate_results = (f"{candidate_name}: recieved {vote_percentage:.1f}% of the vote.\n")
-    txt_file.write(candidate_results)
+    
     # save winning results to txt file
     txt_file.write(winning_candidate_summary)
       # Print the total votes
